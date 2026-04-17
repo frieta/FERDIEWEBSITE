@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMS Sales - Document Management System | Ferdinan Rieta Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1><a href="index.html" style="color: inherit; text-decoration: none; cursor: pointer;">Ferdinan Rieta</a></h1>
+                    <p class="tagline">Management Information System Officer</p>
+                </div>
+                <a href="index.html" class="btn btn-secondary" style="margin-left: auto;">← Back to Portfolio</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="project-detail">
+        <div class="container">
+            <div class="project-hero">
+                <img src="images/DMSSales.png" alt="DMS Sales - Document Management System" class="project-hero-image">
+                <div class="project-hero-content">
+                    <h1>DMS Sales: Document Management System</h1>
+                    <p class="project-subtitle">A comprehensive PHP + MySQL document management application for the Sales department with advanced revision tracking and archiving</p>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <section class="detail-section">
+                    <h2>Project Overview</h2>
+                    <p>DMS Sales is a role-based document management application designed specifically for the Sales department. It provides complete document lifecycle management including uploads, revision history, archiving workflows, license expiration tracking, and a comprehensive notification system with role-based access controls.</p>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Core Features</h2>
+                    <ul class="feature-list">
+                        <li>Role-based authentication (admin, authorized, temp)</li>
+                        <li>Document upload with client and document type metadata</li>
+                        <li>Complete revision history with per-version view and download</li>
+                        <li>Archive and unarchive workflow with active/archived file separation</li>
+                        <li>License expiration tracking and daily admin summaries</li>
+                        <li>Admin notifications feed with notification status handling</li>
+                        <li>Temporary-account document permissions with restricted file access</li>
+                        <li>Document search, filtering, and folder organization</li>
+                        <li>Excel export functionality for license monitoring</li>
+                        <li>Document type and client name management</li>
+                        <li>Comprehensive audit trail and access logging</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Technology Stack</h2>
+                    <div class="tech-stack-grid">
+                        <div class="tech-item">
+                            <strong>Backend</strong>
+                            <p>PHP (server-rendered)</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Database</strong>
+                            <p>MySQL / MariaDB</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Architecture</strong>
+                            <p>MVC Structure</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Deployment</strong>
+                            <p>XAMPP-compatible</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Main Pages & Functionality</h2>
+                    <ul class="feature-list">
+                        <li><strong>public/login.php</strong> - Sign in page with credential validation</li>
+                        <li><strong>public/dashboard.php</strong> - Summary cards and recent documents overview</li>
+                        <li><strong>public/drive.php</strong> - Document drive with search, filters, folders, and action buttons</li>
+                        <li><strong>public/revisions.php</strong> - Revised file history and complete version list</li>
+                        <li><strong>public/licenses.php</strong> - Expiration monitoring and Excel export functionality</li>
+                        <li><strong>public/admin_notifications.php</strong> - Notifications inbox with category filters</li>
+                        <li><strong>public/users.php</strong> - Admin user management (CRUD)</li>
+                        <li><strong>public/document_types.php</strong> - Document type management</li>
+                        <li><strong>public/add_client.php</strong> - Client name management</li>
+                        <li><strong>public/archive.php</strong> - Archived documents with restore functionality</li>
+                        <li><strong>public/view.php / download.php</strong> - Document viewing and download</li>
+                        <li><strong>public/view_revision.php / download_revision.php</strong> - Revision viewing and download</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Project Structure</h2>
+                    <div class="code-block">
+                        <pre>DMS-Sales/
+├── public/                           (Browser-accessible pages)
+│   ├── login.php
+│   ├── dashboard.php
+│   ├── drive.php
+│   ├── revisions.php
+│   ├── licenses.php
+│   ├── admin_notifications.php
+│   ├── users.php
+│   ├── document_types.php
+│   ├── add_client.php
+│   ├── archive.php
+│   ├── view.php
+│   ├── download.php
+│   ├── view_revision.php
+│   └── download_revision.php
+├── actions/                          (Form/action handlers)
+├── includes/                         (Shared auth, helpers, layout)
+├── config/
+│   └── database.php                 (Database connection config)
+├── database/
+│   └── schema.sql                   (Schema + default seed data)
+├── storage/
+│   ├── active/                      (Active uploaded files)
+│   ├── archived/                    (Archived files)
+│   └── revisions/                   (Previous file revisions)
+</pre>
+                    </div>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Common Workflows</h2>
+                    
+                    <h3>Upload a New Document</h3>
+                    <ol class="setup-steps">
+                        <li>Open Document Drive</li>
+                        <li>Click "Add New File"</li>
+                        <li>Fill out client, title, type, and optional expiration date</li>
+                        <li>Upload and save</li>
+                    </ol>
+
+                    <h3>Revise an Existing Document</h3>
+                    <ol class="setup-steps">
+                        <li>Open Document Drive and click "Add New File"</li>
+                        <li>Use the same title and document type as the existing file</li>
+                        <li>Check the revise option in the upload form</li>
+                        <li>Submit to save a new version while preserving the old one in storage/revisions/</li>
+                    </ol>
+
+                    <h3>Archive / Unarchive</h3>
+                    <ul class="feature-list">
+                        <li>Archive from drive views to move file to storage/archived/</li>
+                        <li>Unarchive from archive view to restore file to active storage</li>
+                    </ul>
+
+                    <h3>Check Expiring Documents</h3>
+                    <ol class="setup-steps">
+                        <li>Open "License Expiration Monitoring"</li>
+                        <li>Filter by client if needed</li>
+                        <li>Sort by expiration date or client name</li>
+                        <li>Export to Excel when a report is needed</li>
+                    </ol>
+
+                    <h3>Review Notifications</h3>
+                    <ol class="setup-steps">
+                        <li>Open "Notifications" from the top navigation</li>
+                        <li>Choose a filter: All Notifications, Daily Expiration Summary, Document Revised, or New Access Request</li>
+                        <li>Click "Open" to mark a notification as read and follow its target page</li>
+                    </ol>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Roles and Access Control</h2>
+                    <div class="accounts-grid">
+                        <div class="account-card">
+                            <h4>Admin Role</h4>
+                            <p>Full access to all features, user management, and notifications. Can manage document types and clients.</p>
+                        </div>
+                        <div class="account-card">
+                            <h4>Authorized Role</h4>
+                            <p>Document operations and permitted management actions. Can upload, revise, and archive documents.</p>
+                        </div>
+                        <div class="account-card">
+                            <h4>Temp Role</h4>
+                            <p>Limited access to explicitly assigned documents only. Restricted file access based on permissions.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Database Configuration</h2>
+                    <h3>Database Details</h3>
+                    <ul>
+                        <li>Default database name from schema: <strong>document_management_system</strong></li>
+                        <li>Main tables:
+                            <ul class="feature-list" style="margin: 0.5rem 0;">
+                                <li>users - User accounts and roles</li>
+                                <li>documents - Active documents</li>
+                                <li>document_revisions - Document version history</li>
+                                <li>document_types - Available document categories</li>
+                                <li>client_names - Client reference data</li>
+                                <li>admin_notifications - System notifications</li>
+                                <li>temp_account_permissions - Temporary account access rules</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>Default Login Credentials</h3>
+                    <div class="accounts-grid">
+                        <div class="account-card">
+                            <h4>Default Admin</h4>
+                            <p><strong>Username:</strong> admin</p>
+                            <p><strong>Password:</strong> password</p>
+                        </div>
+                    </div>
+                    <p class="warning">⚠️ Change default credentials immediately after first login.</p>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Installation & Setup</h2>
+                    <h3>Requirements</h3>
+                    <ul>
+                        <li>PHP 7.4+</li>
+                        <li>MySQL / MariaDB</li>
+                        <li>XAMPP or similar PHP stack</li>
+                        <li>Apache web server</li>
+                    </ul>
+
+                    <h3>Installation Steps</h3>
+                    <ol class="setup-steps">
+                        <li>Place the project at: <code>c:/xampp/htdocs/DMS-Sales</code></li>
+                        <li>Start Apache and MySQL from XAMPP Control Panel</li>
+                        <li>Create/import database schema:
+                            <ul>
+                                <li>Open phpMyAdmin</li>
+                                <li>Import <code>database/schema.sql</code></li>
+                            </ul>
+                        </li>
+                        <li>Update credentials in: <code>config/database.php</code></li>
+                        <li>Open the app: <code>http://localhost/DMS-Sales/public/</code></li>
+                    </ol>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Storage and File Management</h2>
+                    <ul class="feature-list">
+                        <li>Active uploads are stored under <strong>storage/active/</strong></li>
+                        <li>Archived files are moved to <strong>storage/archived/</strong></li>
+                        <li>Previous versions are copied to <strong>storage/revisions/</strong> when a document is revised</li>
+                        <li>File history is tracked in <strong>document_revisions</strong> table and surfaced in "Revised Files" page</li>
+                        <li>Storage folders must be writable by Apache/PHP process</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Important Configuration Notes</h2>
+                    <ul class="feature-list">
+                        <li>Ensure <code>storage/active</code>, <code>storage/archived</code>, and <code>storage/revisions</code> folders are writable</li>
+                        <li>App routes and assets are configured for base path <code>/DMS-Sales/public</code></li>
+                        <li>If you rename the project folder, update hardcoded paths accordingly</li>
+                        <li>Login redirects to <code>public/dashboard.php</code> after successful authentication</li>
+                        <li>The default landing page at <code>public/index.php</code> redirects to login or dashboard depending on session state</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Troubleshooting</h2>
+                    <div class="troubleshoot-item">
+                        <h4>Cannot Log In</h4>
+                        <ul>
+                            <li>Verify DB credentials in <code>config/database.php</code></li>
+                            <li>Ensure <code>document_management_system</code> database exists</li>
+                            <li>Confirm schema import succeeded</li>
+                        </ul>
+                    </div>
+                    <div class="troubleshoot-item">
+                        <h4>Upload or Revision Errors</h4>
+                        <ul>
+                            <li>Check storage folder write permissions</li>
+                            <li>Verify Apache user has write access to storage directories</li>
+                            <li>Ensure sufficient disk space is available</li>
+                        </ul>
+                    </div>
+                    <div class="troubleshoot-item">
+                        <h4>Missing Notifications</h4>
+                        <ul>
+                            <li>Confirm your account role allows notifications</li>
+                            <li>Verify notification records exist in <code>admin_notifications</code> table</li>
+                            <li>Check that notification settings are enabled in admin panel</li>
+                        </ul>
+                    </div>
+                    <div class="troubleshoot-item">
+                        <h4>Wrong Links After Moving Folder</h4>
+                        <ul>
+                            <li>Update base path references using <code>/DMS-Sales/public</code></li>
+                            <li>Check configuration files for hardcoded paths</li>
+                            <li>Clear browser cache if links still appear incorrect</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Ferdinan Rieta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        .project-detail {
+            padding: 8rem 0 3rem;
+            background: var(--bg-light);
+        }
+
+        .project-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .project-hero-image {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .project-hero-content h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .detail-section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.8rem;
+        }
+
+        .detail-section h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        .detail-section h4 {
+            color: var(--primary-color);
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .feature-list, .workflow-list {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list li, .workflow-list li {
+            margin-bottom: 0.7rem;
+            line-height: 1.6;
+        }
+
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-item {
+            padding: 1.2rem;
+            background: var(--bg-light);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 4px;
+        }
+
+        .tech-item strong {
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        .tech-item p {
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        code {
+            background: rgba(0,0,0,0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .accounts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .account-card {
+            padding: 1.2rem;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        .account-card h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .account-card p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .warning {
+            background: #fff3cd;
+            padding: 1rem;
+            border-left: 4px solid #ffc107;
+            margin-top: 1rem;
+            border-radius: 4px;
+            color: #856404;
+        }
+
+        .warning-box {
+            background: #f8d7da;
+            padding: 1.5rem;
+            border: 1px solid #f5c6cb;
+            border-radius: 6px;
+            color: #721c24;
+        }
+
+        .warning-box h4 {
+            color: #721c24;
+            margin-top: 1rem;
+        }
+
+        .warning-box ol {
+            margin: 1rem 0 0 1.5rem;
+        }
+
+        .warning-box li {
+            margin-bottom: 0.5rem;
+        }
+
+        .setup-steps {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        .setup-steps li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .setup-steps ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .troubleshoot-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 6px;
+        }
+
+        .troubleshoot-item h4 {
+            margin-top: 0;
+        }
+
+        .troubleshoot-item ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0 0 0;
+        }
+
+        .troubleshoot-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .project-hero-content h1 {
+                font-size: 1.7rem;
+            }
+
+            .detail-section {
+                padding: 1.5rem;
+            }
+
+            .detail-section h2 {
+                font-size: 1.3rem;
+            }
+
+            .code-block {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</body>
+</html>

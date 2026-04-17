@@ -312,8 +312,25 @@ section {
     gap: 1.2rem;
 }
 
+.project-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card-link:hover {
+    transform: translateY(-8px);
+}
+
+.project-card-link:hover .project-card {
+    box-shadow: var(--shadow-md);
+}
+
 .project-card {
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 .project-image {

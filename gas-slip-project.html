@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMR Gas Slip Issuance System | Ferdinan Rieta Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1><a href="index.html" style="color: inherit; text-decoration: none; cursor: pointer;">Ferdinan Rieta</a></h1>
+                    <p class="tagline">Management Information System Officer</p>
+                </div>
+                <a href="index.html" class="btn btn-secondary" style="margin-left: auto;">← Back to Portfolio</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="project-detail">
+        <div class="container">
+            <div class="project-hero">
+                <img src="images/Gas Slip System.png" alt="AMR Gas Slip Issuance System" class="project-hero-image">
+                <div class="project-hero-content">
+                    <h1>AMR Gas Slip Issuance System</h1>
+                    <p class="project-subtitle">A sophisticated Laravel-based fuel management system with controlled gas slip issuance, printing, and audit logging</p>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <section class="detail-section">
+                    <h2>System Overview</h2>
+                    <p>The AMR Gas Slip Issuance System is a Laravel-based internal web application used to manage fuel requests, gas slip issuance, printing, claim tracking, and audit logging. It is designed for controlled and traceable processing of fuel-related transactions within an organization. The system supports role-based access so that each user can only access the functions required by their responsibility. It also records operational activity to support monitoring, review, and accountability.</p>
+                </section>
+
+                <section class="detail-section">
+                    <h2>System Objectives</h2>
+                    <ul class="feature-list">
+                        <li>Centralize fuel request submission and approval</li>
+                        <li>Generate gas slips with controlled numbering and print history</li>
+                        <li>Track issuance, claiming, and reconciliation of gas slips</li>
+                        <li>Maintain master data for users, vehicles, drivers, and gas stations</li>
+                        <li>Provide notifications and audit logs for transparency</li>
+                        <li>Enforce security policies for authentication, authorization, and session control</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Technology Stack</h2>
+                    <div class="tech-stack-grid">
+                        <div class="tech-item">
+                            <strong>Framework</strong>
+                            <p>Laravel</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Language</strong>
+                            <p>PHP</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Database</strong>
+                            <p>MySQL / MariaDB</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Frontend</strong>
+                            <p>Blade Templates, Laravel Vite</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>PDF Output</strong>
+                            <p>DomPDF</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Environment</strong>
+                            <p>XAMPP or equivalent</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Core Features</h2>
+                    
+                    <h3>5.1 Authentication and Session Management</h3>
+                    <ul class="feature-list">
+                        <li>Secure login and logout flow</li>
+                        <li>Session-based authentication</li>
+                        <li>Inactivity timeout protection</li>
+                        <li>Password hashing using bcrypt</li>
+                        <li>Strong password enforcement for administrative accounts</li>
+                    </ul>
+
+                    <h3>5.2 Role-Based Access Control</h3>
+                    <p>The system uses role restrictions to separate duties:</p>
+                    <div class="code-block">
+    ADMIN     - Full access, user management, master data management, 
+                fuel request approvals, gas slip issuance and printing, 
+                review access
+    ISSUER    - Create gas slips, print slips, claim slips, manage 
+                daily issuance work
+    REVIEWER  - View-only access to reports, logs, and records
+    REQUESTOR - Submit and view fuel requests
+                    </div>
+
+                    <h3>5.3 Master Data Management</h3>
+                    <p>Administrative users can maintain the key reference data used by the system:</p>
+                    <ul class="feature-list">
+                        <li>Users and user accounts</li>
+                        <li>Vehicles</li>
+                        <li>Drivers</li>
+                        <li>Gas stations</li>
+                        <li>Managed devices</li>
+                    </ul>
+
+                    <h3>5.4 Fuel Request Management</h3>
+                    <ul class="feature-list">
+                        <li>Requestors can submit fuel requests</li>
+                        <li>Requests can be viewed individually or as a list</li>
+                        <li>Admin and authorized issuer users can review all requests</li>
+                        <li>Requests can be approved or rejected by admin/issuer users</li>
+                        <li>During approval, gas station selection is required and the approved amount may be adjusted</li>
+                        <li>Approval auto-generates a linked gas slip record</li>
+                    </ul>
+
+                    <h3>5.5 Gas Slip Issuance</h3>
+                    <ul class="feature-list">
+                        <li>Authorized users can create gas slips directly or via auto-generation from approved fuel requests</li>
+                        <li>During fuel request approval, the approver selects the gas station to be used on the generated slip</li>
+                        <li>The system assigns a sequential control number</li>
+                        <li>Gas slips store the requested liters, amount, vehicle, driver, station, and purpose details</li>
+                        <li>Fuel request purpose is mapped to travel purpose when matched and retained in remarks as fallback</li>
+                        <li>Issued slips can be printed and later claimed</li>
+                    </ul>
+
+                    <h3>5.6 Controlled Printing</h3>
+                    <ul class="feature-list">
+                        <li>First print is logged</li>
+                        <li>Reprints require justification</li>
+                        <li>Print count is tracked</li>
+                        <li>Reprinted copies are marked clearly</li>
+                        <li>Gas slip print format uses portrait orientation and half-letter page size (5.5" x 8.5")</li>
+                    </ul>
+
+                    <h3>5.7 Claims and Reconciliation</h3>
+                    <ul class="feature-list">
+                        <li>Issued slips can be marked as claimed</li>
+                        <li>Claimed liters, claimed total cost, and SI No. are required when marking as claimed</li>
+                        <li>Odometer reading is optional</li>
+                        <li>Reviewers can inspect claimed records for reporting and reconciliation</li>
+                    </ul>
+
+                    <h3>5.8 Notifications</h3>
+                    <ul class="feature-list">
+                        <li>The system maintains user notifications</li>
+                        <li>Users can mark notifications as read individually or in bulk</li>
+                        <li>Unread counts and live notification streams are available for UI updates</li>
+                        <li>Stream reconnection uses last-notification tracking to prevent duplicate replay</li>
+                    </ul>
+
+                    <h3>5.9 Activity Logging and Audit Trail</h3>
+                    <ul class="feature-list">
+                        <li>Authentication events are logged</li>
+                        <li>Master data changes are logged</li>
+                        <li>Slip issuance, printing, reprinting, approval, and claim activities are recorded</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Functional Modules</h2>
+                    
+                    <h3>Authentication Module</h3>
+                    <p>Handles login, logout, session validation, and account access control.</p>
+
+                    <h3>Dashboard Module</h3>
+                    <p>Provides a landing page for authenticated users and acts as the application entry point after login.</p>
+
+                    <h3>Notification Module</h3>
+                    <p>Provides notification listing, unread count retrieval, read status updates, and stream-based delivery for the interface.</p>
+
+                    <h3>Admin Master Data Module</h3>
+                    <p>Supports CRUD operations for Users, Vehicles, Drivers, Gas Stations, and Managed Devices.</p>
+
+                    <h3>Fuel Request Module</h3>
+                    <p>Supports request creation, viewing, updating, and approval handling with automatic gas slip generation.</p>
+
+                    <h3>Gas Slip Module</h3>
+                    <p>Supports slip creation, detail viewing, claiming, and printing with controlled reprint functionality.</p>
+
+                    <h3>Review and Reporting Module</h3>
+                    <p>Provides read-only access to gas slips, activity logs, claimed slip reports, and master data reference lists.</p>
+                </section>
+
+                <section class="detail-section">
+                    <h2>System Workflows</h2>
+                    
+                    <h3>7.1 Login Workflow</h3>
+                    <ol class="setup-steps">
+                        <li>A user opens the login page</li>
+                        <li>The user submits credentials</li>
+                        <li>The system validates the credentials and account status</li>
+                        <li>A successful login opens the dashboard</li>
+                        <li>Failed attempts and successful access are logged</li>
+                    </ol>
+
+                    <h3>7.2 Fuel Request Workflow</h3>
+                    <ol class="setup-steps">
+                        <li>A requestor creates a new fuel request</li>
+                        <li>The request stores vehicle, driver, purpose, requested date, and quantity/amount details</li>
+                        <li>The request can be viewed by the requestor</li>
+                        <li>Admin or issuer users can review all requests</li>
+                        <li>During approval, the approver selects the gas station and may revise the amount if needed</li>
+                        <li>The request is approved or rejected</li>
+                        <li>If approved, the system auto-generates a linked gas slip</li>
+                    </ol>
+
+                    <h3>7.3 Gas Slip Issuance Workflow</h3>
+                    <ol class="setup-steps">
+                        <li>An authorized admin or issuer opens the new gas slip screen</li>
+                        <li>The admin or issuer selects the required operational details</li>
+                        <li>The system creates a unique control number</li>
+                        <li>During fuel request approval, the approver chooses the target gas station</li>
+                        <li>For approved requests, the system auto-generates the slip and links it to the source request</li>
+                        <li>Travel purpose is set by purpose-name match when available, with purpose remarks fallback</li>
+                        <li>The slip is stored with its issuance details and initial status</li>
+                        <li>The slip can be printed immediately or later</li>
+                    </ol>
+
+                    <h3>7.4 Print and Reprint Workflow</h3>
+                    <ol class="setup-steps">
+                        <li>An authorized admin or issuer prints the slip</li>
+                        <li>The system increments the print count and logs the event</li>
+                        <li>If a reprint is requested, a reason must be provided</li>
+                        <li>The reprint is marked clearly and also logged</li>
+                    </ol>
+
+                    <h3>7.5 Claim Workflow</h3>
+                    <ol class="setup-steps">
+                        <li>The slip is later marked as claimed</li>
+                        <li>Claimed liters, claimed total cost, and SI No. are encoded</li>
+                        <li>Odometer reading may be encoded if available</li>
+                        <li>The record becomes available for review and reconciliation</li>
+                    </ol>
+
+                    <h3>7.6 Review and Reporting Workflow</h3>
+                    <ol class="setup-steps">
+                        <li>Reviewers open read-only report screens</li>
+                        <li>They can inspect slips, claimed records, and activity logs</li>
+                        <li>The reports support oversight and auditing</li>
+                    </ol>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Data Model Overview</h2>
+                    <p>The system is built around the following main data entities:</p>
+                    <table class="data-table">
+                        <tr>
+                            <th>Entity</th>
+                            <th>Purpose</th>
+                        </tr>
+                        <tr>
+                            <td><strong>users</strong></td>
+                            <td>Stores user accounts and role assignments</td>
+                        </tr>
+                        <tr>
+                            <td><strong>roles</strong></td>
+                            <td>Defines access roles</td>
+                        </tr>
+                        <tr>
+                            <td><strong>vehicles</strong></td>
+                            <td>Stores vehicle master data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>drivers</strong></td>
+                            <td>Stores driver master data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>gas_stations</strong></td>
+                            <td>Stores station reference data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>travel_purposes</strong></td>
+                            <td>Stores approved trip or purpose categories</td>
+                        </tr>
+                        <tr>
+                            <td><strong>fuel_requests</strong></td>
+                            <td>Stores fuel request transactions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>gas_slips</strong></td>
+                            <td>Stores issued gas slip records</td>
+                        </tr>
+                        <tr>
+                            <td><strong>gas_slip_print_logs</strong></td>
+                            <td>Stores print and reprint history</td>
+                        </tr>
+                        <tr>
+                            <td><strong>notifications</strong></td>
+                            <td>Stores user notifications</td>
+                        </tr>
+                        <tr>
+                            <td><strong>activity_logs</strong></td>
+                            <td>Stores audit events</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Key Business Rules</h2>
+                    <ul class="feature-list">
+                        <li>Only authenticated users may access the application</li>
+                        <li>Role permissions determine what a user can view or manage</li>
+                        <li>Admin users can issue gas slips and print/reprint slips</li>
+                        <li>Gas slip control numbers must remain sequential and unique</li>
+                        <li>Print activity must always be recorded</li>
+                        <li>Reprints must require a reason</li>
+                        <li>Administrative and master data changes must be logged</li>
+                        <li>Notifications may be marked as read individually or in bulk</li>
+                        <li>Inactive or unauthorized users must not access restricted functions</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Security Controls</h2>
+                    <ul class="feature-list">
+                        <li>Bcrypt password hashing</li>
+                        <li>Session timeout protection</li>
+                        <li>Role-based route protection</li>
+                        <li>Audit logging for critical actions</li>
+                        <li>CSRF protection for form submissions</li>
+                        <li>Controlled printing with reprint justification</li>
+                        <li>Separation of duties between request, issuance, and review functions</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Main Application Routes</h2>
+                    <div class="code-block">
+/login
+/dashboard
+/notifications
+/master/users
+/master/vehicles
+/master/drivers
+/master/gas-stations
+/master/managed-devices
+/gas-slips
+/fuel-requests
+/reviews/gas-slips
+/reviews/activity-log
+/reviews/claimed-report
+                    </div>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Installation & Setup Summary</h2>
+                    <ol class="setup-steps">
+                        <li>Configure the database and environment settings</li>
+                        <li>Run migrations and seeders</li>
+                        <li>Start the Laravel application</li>
+                        <li>Open the login page in a browser</li>
+                        <li>Sign in using an authorized account</li>
+                    </ol>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Operational Notes</h2>
+                    <ul class="feature-list">
+                        <li>Keep database backups before data resets or bulk maintenance</li>
+                        <li>Review activity logs regularly for audit compliance</li>
+                        <li>Ensure roles are assigned correctly before user onboarding</li>
+                        <li>Verify that notification and print flows are functioning after deployment</li>
+                        <li>Use the review module for periodical record checking</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Maintenance Considerations</h2>
+                    <ul class="feature-list">
+                        <li>Validate all master data before issuing slips</li>
+                        <li>Preserve print logs for accountability</li>
+                        <li>Periodically review inactive accounts</li>
+                        <li>Clear temporary cache and optimize configuration after environment changes</li>
+                        <li>Update documentation whenever business rules or routes change</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Project Summary</h2>
+                    <p>The AMR Gas Slip Issuance System provides a secure and traceable process for managing fuel requests, gas slip issuance, printing, and review. Its role-based architecture, logging features, and controlled workflow support operational accountability and formal recordkeeping. Built with Laravel, it leverages modern PHP frameworks to deliver a robust, maintainable solution for fuel management operations.</p>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Ferdinan Rieta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        .project-detail {
+            padding: 8rem 0 3rem;
+            background: var(--bg-light);
+        }
+
+        .project-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .project-hero-image {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .project-hero-content h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .detail-section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.8rem;
+        }
+
+        .detail-section h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        .detail-section h4 {
+            color: var(--primary-color);
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .feature-list, .workflow-list {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list li, .workflow-list li {
+            margin-bottom: 0.7rem;
+            line-height: 1.6;
+        }
+
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-item {
+            padding: 1.2rem;
+            background: var(--bg-light);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 4px;
+        }
+
+        .tech-item strong {
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        .tech-item p {
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        code {
+            background: rgba(0,0,0,0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--bg-light);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .data-table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover {
+            background: rgba(30, 60, 114, 0.05);
+        }
+
+        .setup-steps {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        .setup-steps li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .setup-steps ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .project-hero-content h1 {
+                font-size: 1.7rem;
+            }
+
+            .detail-section {
+                padding: 1.5rem;
+            }
+
+            .detail-section h2 {
+                font-size: 1.3rem;
+            }
+
+            .code-block {
+                font-size: 0.75rem;
+            }
+
+            .data-table th, .data-table td {
+                padding: 0.7rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</body>
+</html>

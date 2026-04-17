@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EARS - Employee Attendance Record System | Ferdinan Rieta Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1><a href="index.html" style="color: inherit; text-decoration: none; cursor: pointer;">Ferdinan Rieta</a></h1>
+                    <p class="tagline">Management Information System Officer</p>
+                </div>
+                <a href="index.html" class="btn btn-secondary" style="margin-left: auto;">← Back to Portfolio</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="project-detail">
+        <div class="container">
+            <div class="project-hero">
+                <img src="images/EARS.png" alt="EARS - Employee Attendance Record System" class="project-hero-image">
+                <div class="project-hero-content">
+                    <h1>EARS: Employee Attendance Record System</h1>
+                    <p class="project-subtitle">A comprehensive PHP + MySQL attendance tracking system for employee and visitor management</p>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <section class="detail-section">
+                    <h2>Project Overview</h2>
+                    <p>A PHP + MySQL attendance system for employee time in/time out with visitor logging, admin management, and a guard workflow. EARS provides a complete solution for tracking employee attendance and visitor access with an intuitive public kiosk interface and powerful admin dashboard.</p>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Key Features</h2>
+                    <ul class="feature-list">
+                        <li>Public time station for employee and visitor time logs</li>
+                        <li>Auto decision for time in/time out based on current-day log status</li>
+                        <li>Visitor support with ID format validation (V9999)</li>
+                        <li>Optional full visitor data collection during time in</li>
+                        <li>Admin dashboard with visitor metrics and recent logs</li>
+                        <li>Complete employee management (CRUD operations)</li>
+                        <li>Admin user management with role controls</li>
+                        <li>Guard account management (create, activate/deactivate)</li>
+                        <li>Attendance filtering and CSV export for both employees and visitors</li>
+                        <li>Guard panel to complete missing visitor information</li>
+                        <li>Theme toggle support (light/dark modes)</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Technology Stack</h2>
+                    <div class="tech-stack-grid">
+                        <div class="tech-item">
+                            <strong>Backend</strong>
+                            <p>PHP (procedural)</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Database</strong>
+                            <p>MySQL / MariaDB</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Frontend</strong>
+                            <p>jQuery</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>UI Framework</strong>
+                            <p>Bootstrap</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Data Tables</strong>
+                            <p>DataTables</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Project Structure</h2>
+                    <div class="code-block">
+                        <pre>EARS/
+├── index.php                          (Public time in/time out kiosk page)
+├── admin/
+│   ├── db_connect.php                (Database connection)
+│   ├── login.php                     (Admin login)
+│   ├── home.php                      (Dashboard & settings)
+│   ├── employee.php                  (Employee management)
+│   ├── attendance.php                (Employee attendance records)
+│   ├── visitor_attendance.php        (Visitor attendance records)
+│   ├── users.php                     (Admin user management)
+│   ├── guards.php                    (Guard account management)
+│   └── [API endpoints]
+├── guard/
+│   ├── login.php                     (Guard login)
+│   ├── home.php                      (Visitor info completion)
+│   └── save_visitor_info.php         (Backend for saving visitor data)
+├── assets/
+│   ├── css/                          (CSS, JS, fonts, images)
+│   └── js/
+├── database/
+│   ├── attendance.sql                (Base schema and seed data)
+│   └── schema_update_checker.sql     (Schema migrator/checker)
+</pre>
+                    </div>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Main Workflows</h2>
+                    
+                    <h3>1) Public Kiosk (/index.php)</h3>
+                    <ul class="workflow-list">
+                        <li>Enter employee number or visitor ID</li>
+                        <li>Visitor IDs must match V + 4 digits (example: V0001)</li>
+                        <li>Press Enter or use Time In/Time Out buttons</li>
+                        <li>For visitors, if full data mode is enabled, a modal requires:
+                            <ul>
+                                <li>Name, Company, Contact No., Purpose, Contact Person, Visitor Type</li>
+                            </ul>
+                        </li>
+                        <li>Live cards and tables show:
+                            <ul>
+                                <li>Employees inside</li>
+                                <li>Visitors inside</li>
+                                <li>Total visitors today</li>
+                                <li>Last 10 employee logs</li>
+                                <li>Visitors currently inside</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>2) Admin Panel (/admin)</h3>
+                    <ul class="workflow-list">
+                        <li><strong>home.php:</strong> Dashboard with configurable settings for visitor data collection and time out cooldown</li>
+                        <li><strong>employee.php:</strong> Employee CRUD operations</li>
+                        <li><strong>attendance.php:</strong> Employee attendance table with filters and CSV export</li>
+                        <li><strong>visitor_attendance.php:</strong> Visitor attendance table with date filters and CSV export</li>
+                        <li><strong>users.php:</strong> Admin user CRUD</li>
+                        <li><strong>guards.php:</strong> Guard account CRUD and activation controls</li>
+                    </ul>
+
+                    <h3>3) Guard Panel (/guard)</h3>
+                    <ul class="workflow-list">
+                        <li>Login with guard account credentials</li>
+                        <li>View visitor logs with incomplete details</li>
+                        <li>Complete required visitor information fields</li>
+                        <li>Save updated visitor records</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Default Accounts</h2>
+                    <div class="accounts-grid">
+                        <div class="account-card">
+                            <h4>Admin Account</h4>
+                            <p><strong>Username:</strong> admin</p>
+                            <p><strong>Password:</strong> admin123</p>
+                        </div>
+                        <div class="account-card">
+                            <h4>Guard Account</h4>
+                            <p><strong>Username:</strong> guard</p>
+                            <p><strong>Password:</strong> guard123</p>
+                        </div>
+                    </div>
+                    <p class="warning">⚠️ Change default credentials immediately in production.</p>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Requirements & Setup</h2>
+                    <h3>System Requirements</h3>
+                    <ul>
+                        <li>XAMPP (Apache + MySQL)</li>
+                        <li>PHP 7.4+ (PHP 8.x works in most cases)</li>
+                        <li>MySQL/MariaDB with database named 'attendance'</li>
+                    </ul>
+
+                    <h3>Installation Steps</h3>
+                    <ol class="setup-steps">
+                        <li>Copy project to: <code>C:\xampp\htdocs\EARS</code></li>
+                        <li>Start Apache and MySQL in XAMPP Control Panel</li>
+                        <li>Create database named 'attendance'</li>
+                        <li>Import schema:
+                            <ul>
+                                <li>Primary: <code>database/attendance.sql</code></li>
+                                <li>Optional: <code>database/schema_update_checker.sql</code></li>
+                            </ul>
+                        </li>
+                        <li>Access the application:
+                            <ul>
+                                <li>Public kiosk: <code>http://localhost/EARS/</code></li>
+                                <li>Admin login: <code>http://localhost/EARS/admin/</code></li>
+                                <li>Guard login: <code>http://localhost/EARS/guard/</code></li>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Database Configuration</h2>
+                    <p>Configured in <code>admin/db_connect.php</code>:</p>
+                    <ul>
+                        <li>First attempt: host 'localhost', user 'root', password 'root'</li>
+                        <li>Fallback attempt: host 'localhost', user 'root', password ''</li>
+                    </ul>
+                    <p>If your MySQL credentials are different, update <code>admin/db_connect.php</code> accordingly.</p>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Data Model</h2>
+                    <p>Core tables utilized by the system:</p>
+                    <ul class="feature-list">
+                        <li><strong>employee</strong> - Employee master data</li>
+                        <li><strong>attendance</strong> - Employee time logs with multiple log types</li>
+                        <li><strong>visitor_attendance</strong> - Visitor time logs</li>
+                        <li><strong>users</strong> - Admin user accounts</li>
+                        <li><strong>guards</strong> - Guard accounts with activation status</li>
+                        <li><strong>app_settings</strong> - System configuration (visitor data mode, timeout settings)</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Security & Production Notes</h2>
+                    <div class="warning-box">
+                        <p><strong>Current Development State:</strong> This codebase uses patterns that are not production-safe by default.</p>
+                        <h4>Recommended Hardening Before Production:</h4>
+                        <ol>
+                            <li>Use <code>password_hash()</code> / <code>password_verify()</code> for password security</li>
+                            <li>Replace raw queries with prepared statements to prevent SQL injection</li>
+                            <li>Add CSRF protection for state-changing requests</li>
+                            <li>Regenerate sessions on login and tighten cookie/session configuration</li>
+                            <li>Add input validation and output escaping consistently</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Operational Notes</h2>
+                    <ul>
+                        <li>Several pages auto-create/auto-update tables and columns if missing</li>
+                        <li>Timezone is set to 'Asia/Manila' across multiple files</li>
+                        <li>Visitor Time Out requires prior Time In (same day)</li>
+                        <li>Time out cooldown is configurable (default: 3 minutes, range: 1-120 minutes)</li>
+                        <li>After visitor Time Out, Time In is blocked for cooldown duration to prevent duplicate reversals</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Troubleshooting</h2>
+                    <div class="troubleshoot-item">
+                        <h4>Database Connection Failed</h4>
+                        <ul>
+                            <li>Verify MySQL is running</li>
+                            <li>Confirm database 'attendance' exists</li>
+                            <li>Check credentials in <code>admin/db_connect.php</code></li>
+                        </ul>
+                    </div>
+                    <div class="troubleshoot-item">
+                        <h4>Blank Page or PHP Errors</h4>
+                        <ul>
+                            <li>Enable PHP error display in local dev environment</li>
+                            <li>Set <code>display_errors=On</code> and <code>error_reporting=E_ALL</code></li>
+                            <li>Check Apache/PHP error logs in XAMPP folder</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Ferdinan Rieta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        .project-detail {
+            padding: 8rem 0 3rem;
+            background: var(--bg-light);
+        }
+
+        .project-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .project-hero-image {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .project-hero-content h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .detail-section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.8rem;
+        }
+
+        .detail-section h3 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        .detail-section h4 {
+            color: var(--primary-color);
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .feature-list, .workflow-list {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list li, .workflow-list li {
+            margin-bottom: 0.7rem;
+            line-height: 1.6;
+        }
+
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-item {
+            padding: 1.2rem;
+            background: var(--bg-light);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 4px;
+        }
+
+        .tech-item strong {
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        .tech-item p {
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        code {
+            background: rgba(0,0,0,0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .accounts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .account-card {
+            padding: 1.2rem;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        .account-card h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .account-card p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .warning {
+            background: #fff3cd;
+            padding: 1rem;
+            border-left: 4px solid #ffc107;
+            margin-top: 1rem;
+            border-radius: 4px;
+            color: #856404;
+        }
+
+        .warning-box {
+            background: #f8d7da;
+            padding: 1.5rem;
+            border: 1px solid #f5c6cb;
+            border-radius: 6px;
+            color: #721c24;
+        }
+
+        .warning-box h4 {
+            color: #721c24;
+            margin-top: 1rem;
+        }
+
+        .warning-box ol {
+            margin: 1rem 0 0 1.5rem;
+        }
+
+        .warning-box li {
+            margin-bottom: 0.5rem;
+        }
+
+        .setup-steps {
+            list-style: decimal;
+            padding-left: 1.5rem;
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        .setup-steps li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .setup-steps ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .troubleshoot-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 6px;
+        }
+
+        .troubleshoot-item h4 {
+            margin-top: 0;
+        }
+
+        .troubleshoot-item ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin: 0.5rem 0 0 0;
+        }
+
+        .troubleshoot-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .project-hero-content h1 {
+                font-size: 1.7rem;
+            }
+
+            .detail-section {
+                padding: 1.5rem;
+            }
+
+            .detail-section h2 {
+                font-size: 1.3rem;
+            }
+
+            .code-block {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</body>
+</html>
