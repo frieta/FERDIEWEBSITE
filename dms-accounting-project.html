@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMS-Accounting System | Ferdinan Rieta Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1><a href="index.html" style="color: inherit; text-decoration: none; cursor: pointer;">Ferdinan Rieta</a></h1>
+                    <p class="tagline">Management Information System Officer</p>
+                </div>
+                <a href="index.html" class="btn btn-secondary" style="margin-left: auto;">← Back to Portfolio</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="project-detail">
+        <div class="container">
+            <div class="project-hero">
+                <img src="images/DMSAccounting.png" alt="DMS-Accounting System" class="project-hero-image">
+                <div class="project-hero-content">
+                    <h1>DMS-Accounting System</h1>
+                    <p class="project-subtitle">A complete accounting document management platform for DR-SI and OR-CR workflows, client tracking, approvals, posting, reporting, and audit-ready operations</p>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <section class="detail-section">
+                    <h2>Project Overview</h2>
+                    <p>DMS-Accounting is a PHP + MySQL financial document management system built to handle sales invoices (DR-SI), payment receipts (OR-CR), client master records, and role-based accounting workflows. It supports complete financial traceability with revision tracking, reporting, scheduled exports, backups, and a compliance-ready audit trail.</p>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Core Features</h2>
+                    <ul class="feature-list">
+                        <li>DR-SI (Sales Invoice) encoding, approval, posting, and payment tracking</li>
+                        <li>OR-CR (Payment Receipt) recording and invoice allocation</li>
+                        <li>Client master file with balance tracking and transaction history</li>
+                        <li>Multi-attachment file support with automatic version control</li>
+                        <li>Statement of Account (SOA), AR Aging, and summary reports</li>
+                        <li>Scheduled report generation with CSV export support</li>
+                        <li>User management, role-based permissions, and approval routing</li>
+                        <li>Database backup and recovery with integrity verification</li>
+                        <li>Full audit trail and admin notifications for key events</li>
+                        <li>Responsive pages and PWA support for app-like access</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Technology Stack</h2>
+                    <div class="tech-stack-grid">
+                        <div class="tech-item">
+                            <strong>Backend</strong>
+                            <p>PHP 8.0+</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Database</strong>
+                            <p>MySQL 5.7+ / MariaDB 10.3+</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Web Server</strong>
+                            <p>Apache 2.4+</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>Architecture</strong>
+                            <p>Server-rendered modular PHP</p>
+                        </div>
+                        <div class="tech-item">
+                            <strong>PWA</strong>
+                            <p>Manifest + Service Worker</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="detail-section">
+                    <h2>User Roles</h2>
+                    <table class="data-table">
+                        <tr>
+                            <th>Role</th>
+                            <th>Create</th>
+                            <th>Post</th>
+                            <th>Approve</th>
+                            <th>Admin</th>
+                            <th>Reports</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Admin</strong></td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Accountant</strong></td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Encoder</strong></td>
+                            <td>✓</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Authorized</strong></td>
+                            <td>✓</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✓</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Viewer / Temp</strong></td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>✗</td>
+                            <td>Limited</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section class="detail-section">
+                    <h2>End-to-End Accounting Workflow</h2>
+                    <ol class="setup-steps">
+                        <li>Create DR-SI as draft and attach supporting files</li>
+                        <li>Submit for approval and route to authorized approver</li>
+                        <li>Approve and post invoice to accounting records</li>
+                        <li>Create OR-CR when payment is received</li>
+                        <li>Allocate receipt amount to one or more invoices</li>
+                        <li>Post payment and update receivable balances</li>
+                        <li>Generate SOA, AR Aging, and summary reports</li>
+                    </ol>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Project Structure</h2>
+                    <div class="code-block">
+<pre>DMS-Accounting/
+├── public/
+│   ├── dashboard.php
+│   ├── drsi.php
+│   ├── orcr.php
+│   ├── revisions.php
+│   ├── users.php
+│   ├── drive.php
+│   ├── archive.php
+│   ├── manifest.webmanifest
+│   └── sw.js
+├── config/
+│   └── database.php
+├── database/
+│   └── schema.sql
+├── includes/
+│   ├── auth.php
+│   └── helpers.php
+└── storage/
+    ├── active/
+    ├── archived/
+    ├── attachments/
+    ├── backups/
+    └── reports/
+</pre>
+                    </div>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Security & Compliance Highlights</h2>
+                    <ul class="feature-list">
+                        <li>Bcrypt password hashing and session-based authentication</li>
+                        <li>Prepared statements for SQL injection prevention</li>
+                        <li>CSRF token checks and output escaping</li>
+                        <li>Upload validation and role-based data access</li>
+                        <li>SHA-256 checksum verification for backup integrity</li>
+                        <li>Comprehensive audit trail for compliance and forensics</li>
+                    </ul>
+                </section>
+
+                <section class="detail-section">
+                    <h2>Release Information</h2>
+                    <ul class="feature-list">
+                        <li><strong>Version:</strong> 1.1</li>
+                        <li><strong>Release Date:</strong> April 27, 2026</li>
+                        <li><strong>Status:</strong> Production Ready</li>
+                        <li><strong>Deployment:</strong> Local network or internet-accessible setup</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <div class="back-home-wrap">
+        <a href="index.html" class="btn btn-primary">← Back to Home</a>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Ferdinan Rieta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        .project-detail {
+            padding: 8rem 0 3rem;
+            background: var(--bg-light);
+        }
+
+        .project-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .project-hero-image {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .project-hero-content h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .project-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-section {
+            background: white;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .detail-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.45rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 1rem;
+        }
+
+        .tech-item {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .tech-item strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .setup-steps {
+            padding-left: 1.3rem;
+        }
+
+        .setup-steps li {
+            margin-bottom: 0.6rem;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.9rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            overflow-x: auto;
+            display: block;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.7rem;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .data-table th {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .back-home-wrap {
+            text-align: center;
+            padding: 0 0 2.5rem;
+            background: var(--bg-light);
+        }
+
+        @media (max-width: 768px) {
+            .project-hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .project-hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .detail-section {
+                padding: 1.25rem;
+            }
+        }
+    </style>
+</body>
+</html>

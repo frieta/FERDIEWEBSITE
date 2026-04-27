@@ -1,0 +1,359 @@
+# DMS-Accounting System
+
+## Document Management System for Accounting Operations
+
+A comprehensive financial document management and accounting solution for handling sales invoices (DR-SI), payment receipts (OR-CR), client records, and complete financial reporting.
+
+---
+
+## 📚 Complete Documentation Available
+
+### Start Here → **[DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)**
+Navigation hub for all documentation including learning paths by user role.
+
+### Main Documentation Files:
+
+1. **[SYSTEM_DOCUMENTATION.md](SYSTEM_DOCUMENTATION.md)** (Comprehensive Reference)
+   - System overview, architecture, and capabilities
+   - Complete user roles and permissions reference
+   - Detailed feature descriptions with workflows
+   - Database schema documentation
+   - Troubleshooting guide
+   - *Best for: Understanding features, learning workflows, general reference*
+
+2. **[TECHNICAL_ADMINISTRATION.md](TECHNICAL_ADMINISTRATION.md)** (For Administrators)
+   - System architecture and directory structure
+   - Configuration and setup guides
+   - Database administration procedures
+   - Security implementation details
+   - Maintenance tasks (daily, weekly, monthly, quarterly)
+   - Emergency recovery procedures
+   - *Best for: System setup, administration, optimization, troubleshooting*
+
+3. **[QUICK_REFERENCE_GUIDE.md](QUICK_REFERENCE_GUIDE.md)** (For End Users)
+   - Quick step-by-step task guides
+   - Role-based quick reference
+   - Common tasks with numbered steps
+   - Error solutions and FAQs
+   - Best practices
+   - *Best for: Performing tasks quickly, common questions, error resolution*
+
+---
+
+## 🚀 Quick Start
+
+### New to the System?
+1. Read: [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md) → Select your role
+2. Follow the recommended reading path
+3. Practice with test data
+4. Refer to documentation as needed
+
+### System Administrator?
+1. Start: [TECHNICAL_ADMINISTRATION.md](TECHNICAL_ADMINISTRATION.md) → System Architecture
+2. Configure: Database, backup, security settings
+3. Create users: [QUICK_REFERENCE_GUIDE.md](QUICK_REFERENCE_GUIDE.md) → Common Tasks
+4. Share documentation with users
+
+### Need to Do Something Specific?
+1. Go to: [QUICK_REFERENCE_GUIDE.md](QUICK_REFERENCE_GUIDE.md) → Common Tasks
+2. Follow numbered steps
+3. Check Error Solutions if needed
+4. Reference main docs for details
+
+---
+
+## ⚙️ System Requirements
+
+- **Server**: Apache 2.4+ with PHP 8.0+
+- **Database**: MySQL 5.7+ or MariaDB 10.3+
+- **Browser**: Modern browser (Chrome, Firefox, Safari, Edge)
+- **Storage**: Minimum 500MB for documents, backups, and reports
+- **Internet**: Optional (local network deployment supported)
+
+---
+
+## 🎯 Core Features
+
+### Financial Document Management
+- **DR-SI (Sales Invoices)**: Create, approve, post, track payments
+- **OR-CR (Payment Receipts)**: Record payments, allocate to invoices
+- **Multi-Attachment System**: Attach files with automatic versioning
+- **Revision Tracking**: Complete history of document changes
+
+### Financial Analysis & Reporting
+- **Statement of Account (SOA)**: Complete client transaction history
+- **Accounts Receivable Aging**: Overdue analysis by days past due
+- **Summary Reports**: Revenue and receipt analysis
+- **Scheduled Reports**: Automatic generation on configured dates
+- **CSV Export**: All reports exportable to Excel
+
+### Client Management
+- Complete client master file with contact information
+- Client balance tracking and credit management
+- Financial history and transaction linking
+- Deactivation (instead of deletion) for audit trail
+
+### System Administration
+- **User Management**: Create users, assign roles, manage permissions
+- **Multi-Level Approvals**: Workflow-based document approval
+- **Database Backup & Recovery**: Automatic daily + manual backups
+- **Audit Trail**: Complete logging of all system activities
+- **Admin Notifications**: Real-time alerts for submissions and actions
+
+### UI, Mobile & PWA Experience
+- **Consistent Modals**: Unified modal close controls and behavior across modules
+- **Responsive Layout**: Mobile-friendly UI while preserving desktop workflows
+- **Install Prompts**: Smart mobile/desktop install prompts that hide after install
+- **Mobile Full Screen**: Optional in-app mobile full-screen toggle (browser support dependent)
+- **PWA Support**: Manifest + service worker for shortcut-based app launch behavior
+
+### Security & Compliance
+- 6-level role-based access control
+- bcrypt password hashing
+- SQL injection prevention (prepared statements)
+- CSRF token protection
+- Checksum verification (SHA-256) for backups
+- Complete audit trail for compliance
+- Self-protection safeguards for admin accounts
+
+---
+
+## 👥 User Roles
+
+| Role | Create | Post | Approve | Admin | View Reports |
+|------|--------|------|---------|-------|--------------|
+| **Admin** | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **Accountant** | ✓ | ✓ | ✗ | ✗ | ✓ |
+| **Encoder** | ✓ | ✗ | ✗ | ✗ | ✓ |
+| **Authorized** | ✓ | ✗ | ✗ | ✗ | ✓ |
+| **Viewer** | ✗ | ✗ | ✗ | ✗ | ✓ |
+| **Temp** | ✗ | ✗ | ✗ | ✗ | Limited |
+
+*Full details: [SYSTEM_DOCUMENTATION.md](SYSTEM_DOCUMENTATION.md) → User Roles & Permissions*
+
+---
+
+## 📂 Project Structure
+
+```
+DMS-Accounting/
+├── public/                     # Web-accessible application pages
+│   ├── dashboard.php
+│   ├── drsi.php               # Sales invoices
+│   ├── orcr.php               # Payment receipts
+│   ├── revisions.php          # Revision history pages
+│   ├── users.php              # User management
+│   ├── drive.php              # Drive integration UI
+│   ├── archive.php            # Archive UI
+│   ├── manifest.webmanifest   # PWA manifest
+│   ├── sw.js                  # Service worker
+│   └── ...
+├── config/
+│   └── database.php           # Database configuration
+├── database/
+│   └── schema.sql             # Database schema
+├── includes/
+│   ├── auth.php               # Authentication
+│   ├── helpers.php            # Utility functions
+│   └── ...
+├── storage/                   # Data storage
+│   ├── active/                # Active documents
+│   ├── archived/              # Archived documents
+│   ├── attachments/           # Financial attachments
+│   ├── backups/               # Database backups
+│   └── reports/               # Generated reports
+├── resources/
+│   └── views/                 # Blade templates
+├── SYSTEM_DOCUMENTATION.md    # Main documentation
+├── TECHNICAL_ADMINISTRATION.md # Admin guide
+├── QUICK_REFERENCE_GUIDE.md   # User quick reference
+└── DOCUMENTATION_INDEX.md     # Documentation hub
+```
+
+---
+
+## 💾 Database Features
+
+### Core Tables
+- **users**: System user accounts and roles
+- **client_names**: Client master file
+- **drsi_records**: Sales invoice records
+- **orcr_records**: Payment receipt records
+- **documents**: Document metadata and storage
+- **financial_attachments**: Multi-file version tracking
+- **audit_trail**: Complete activity log
+- **admin_notifications**: Alert system
+
+### Automatic Features
+- Timestamp tracking (created_at, updated_at)
+- User attribution (created_by, modified_by)
+- Referential integrity (foreign keys)
+- Cascade delete for linked records
+- Unique constraints for key fields
+
+*Full schema: [SYSTEM_DOCUMENTATION.md](SYSTEM_DOCUMENTATION.md) → Database Schema*
+
+---
+
+## 🔐 Security Highlights
+
+- ✓ **Bcrypt Password Hashing**: NIST-approved algorithm
+- ✓ **Role-Based Access Control**: 6-level permission system
+- ✓ **SQL Injection Prevention**: Prepared statements throughout
+- ✓ **HTML Escaping**: XSS prevention on all output
+- ✓ **Session Management**: Secure server-side sessions
+- ✓ **File Upload Validation**: Type and size restrictions
+- ✓ **Checksum Verification**: SHA-256 for data integrity
+- ✓ **Self-Protection Guards**: Admin accounts protected from lockout
+- ✓ **Audit Trail**: Full compliance logging
+- ✓ **CSRF Protection**: Token-based form validation
+
+*Details: [TECHNICAL_ADMINISTRATION.md](TECHNICAL_ADMINISTRATION.md) → Security Features*
+
+---
+
+## 🔄 Workflow Examples
+
+### Create to Payment Flow (30-60 minutes)
+1. **Create** DR-SI (Encoder) → Save as draft
+2. **Upload** supporting documents
+3. **Submit** for approval
+4. **Approve** (Admin) → Status changes to approved
+5. **Post** (Accountant) → Posted to ledger
+6. **Record Payment** → OR-CR created
+7. **Allocate** payment to invoice
+8. **Post** payment → Balances updated
+
+### Report Generation Flow
+1. **Configure** schedule (Admin) → Day of month/week
+2. **System generates** automatically on date
+3. **Review** reports in dashboard
+4. **Download** CSV files
+5. **Analyze** in Excel
+6. **Distribute** to stakeholders
+
+*Complete workflows: [SYSTEM_DOCUMENTATION.md](SYSTEM_DOCUMENTATION.md) → Complete Workflow Processes*
+
+---
+
+## 📋 Key Checklists
+
+### First-Time Admin Setup
+- [ ] Configure database connection
+- [ ] Create admin users
+- [ ] Set report schedules
+- [ ] Configure backup settings
+- [ ] Create test data
+- [ ] Verify backups created
+- [ ] Distribute user documentation
+- [ ] Set up admin notifications
+
+### First-Time User
+- [ ] Log in and verify access
+- [ ] Read quick reference guide
+- [ ] Create test document (save as draft)
+- [ ] Upload test attachment
+- [ ] Practice task workflows
+- [ ] Ask questions before going live
+
+### Monthly Admin Tasks
+- [ ] Review audit trail
+- [ ] Archive old records
+- [ ] Verify backup integrity
+- [ ] Check system performance
+- [ ] Review user access levels
+- [ ] Optimize database
+
+---
+
+## 🆘 Troubleshooting
+
+### Can't Find Answer?
+1. **Quick answers**: [QUICK_REFERENCE_GUIDE.md](QUICK_REFERENCE_GUIDE.md) → Error Messages
+2. **Detailed help**: [SYSTEM_DOCUMENTATION.md](SYSTEM_DOCUMENTATION.md) → Troubleshooting
+3. **Technical issues**: [TECHNICAL_ADMINISTRATION.md](TECHNICAL_ADMINISTRATION.md) → Troubleshooting
+
+### Common Issues
+- **Login problems**: Check credentials, ensure account active
+- **Permission errors**: Verify user role matches intended action
+- **File upload fails**: Check file size (<25MB) and format
+- **Slow performance**: Review database optimization section
+- **Backup issues**: Ensure /storage/backups/ directory writable
+
+---
+
+## 📞 Support & Contact
+
+### Documentation Support
+- **Main Reference**: [SYSTEM_DOCUMENTATION.md](SYSTEM_DOCUMENTATION.md)
+- **Quick Tips**: [QUICK_REFERENCE_GUIDE.md](QUICK_REFERENCE_GUIDE.md)
+- **Technical Help**: [TECHNICAL_ADMINISTRATION.md](TECHNICAL_ADMINISTRATION.md)
+- **Navigation**: [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)
+
+### Issue Reporting
+When reporting issues, include:
+- Error message (exact text)
+- Browser and version
+- Steps to reproduce
+- Expected vs actual result
+- Timeline of issue
+
+---
+
+## 📈 Performance & Optimization
+
+### Recommended Practices
+- Archive records after 6 months
+- Regular database optimization (monthly)
+- Backup verification (weekly)
+- User access review (quarterly)
+- Storage cleanup (monthly)
+
+### Scaling Guidelines
+- <1000 invoices/month: Current setup sufficient
+- 1000-10000/month: Consider database indexing optimization
+- 10000+/month: Plan for database archiving strategy
+
+---
+
+## 📅 Release Information
+
+**Current Version**: 1.1  
+**Release Date**: April 27, 2026  
+**Documentation Status**: Updated  
+**Features**: Core accounting workflows, responsive UI, install prompt controls, fullscreen option, PWA support
+
+---
+
+## 📖 Next Steps
+
+1. **Choose Your Path**:
+   - Administrator? → [TECHNICAL_ADMINISTRATION.md](TECHNICAL_ADMINISTRATION.md)
+   - End User? → [QUICK_REFERENCE_GUIDE.md](QUICK_REFERENCE_GUIDE.md)
+   - Learning System? → [SYSTEM_DOCUMENTATION.md](SYSTEM_DOCUMENTATION.md)
+   - Not Sure? → [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)
+
+2. **Get Oriented**: Read overview documentation for your role
+
+3. **Practice**: Create test data and follow workflow examples
+
+4. **Go Live**: When comfortable, begin production use
+
+5. **Reference**: Keep quick reference guide handy for daily tasks
+
+---
+
+## 📝 Document Information
+
+- **System Name**: DMS-Accounting (Document Management System for Accounting)
+- **Version**: 1.1
+- **Documentation**: Complete (4 comprehensive guides)
+- **Status**: Production Ready
+- **Last Updated**: April 27, 2026
+
+---
+
+### 📖 Start Reading: [DOCUMENTATION_INDEX.md](DOCUMENTATION_INDEX.md)
+
+Welcome aboard! The comprehensive documentation will guide you through every aspect of the system.
+
